@@ -51,5 +51,5 @@ class authenticationusers extends TestCase
         $this->post('/login', ['email' => $user->email(), 'password' => 'password']);
 
         $this->assertNull(Auth::user());
-
+    }
 }
