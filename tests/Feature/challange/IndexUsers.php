@@ -14,9 +14,13 @@ class IndexUsers extends TestCase
     {
         User::factory()->count(2)->create();
 
-        $response = $this->get(route('Users.index'));
+        $response = $this->get(route('users.index'));
 
         $response->assertOk();
+        $usersResponse = $response->getOriginalContent()['users'];
+
+        $response->assertViewIs('users.index');
+        $this->assertNotEmpty($usersResponse->count());
 
     }
 }

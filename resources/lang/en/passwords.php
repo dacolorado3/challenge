@@ -18,5 +18,9 @@ return [
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
+    'password'=>'Password',
+    'remember'=>'Remember Me',
+    'forgot'=>'forgot your password',
+    'confirm'=>'Confirm Password',
 
 ];

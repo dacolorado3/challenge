@@ -3,7 +3,7 @@
 return[
     'titles' => [
         'create' => 'create user',
-        'index' => 'view users'
+        'index' => 'view users',
         ],
     'fields' => [
         'name' => 'name',

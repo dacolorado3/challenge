@@ -17,4 +17,10 @@ return [
     'password' => 'La contraseña ingresada es incorrecta.',
     'throttle' => 'Demasiados intentos de inicio de sesión. Vuelva a intentarlo en: unos segundos.',
 
+    'buttons' =>[
+        'register'=> 'Registro',
+        'login'=> 'Iniciar sesión',
+        'email'=> 'Dirección de correo electrónico',
+    ],
+
 ];
