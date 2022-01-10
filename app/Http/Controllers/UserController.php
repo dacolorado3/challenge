@@ -22,9 +22,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): view
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+
+        ]);
+
+        return redirect()->route('users.index');
     }
 
     /**

@@ -16,11 +16,16 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'verify'=> 'Verify Your Email Address',
+    'verify_email'=>'Before proceeding, please check your email for a verification link. If you did not receive the email,',
+    'not_email'=> 'If you did not receive the email',
+    'fresh_email'=> 'A fresh verification link has been sent to your email address.',
 
     'buttons' =>[
         'register'=> 'Register',
         'login'=> 'Login',
         'email'=> 'E-mail address',
+        'link_verify_email'=>'click here to request another',
     ],
 
 ];

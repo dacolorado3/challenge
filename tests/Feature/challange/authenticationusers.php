@@ -6,19 +6,17 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\Concerns\HasUser;
 
 class authenticationusers extends TestCase
 {
     use RefreshDatabase;
-    use HasUser;
 
     public function test_it_can_render_a_login_view(): void
     {
         $response = $this->get( '/login');
 
         $response->assertOk();
-        $response->assertSee(trans('Email'));
+        $response->assertSee(trans('email'));
     }
 
     public function test_it_can_login_user(): void

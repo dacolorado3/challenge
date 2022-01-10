@@ -10,17 +10,27 @@ class IndexUsers extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_you_can_list_users(): void
+    public function testANotAuthenticatedCanNotListUsers()
     {
-        User::factory()->count(2)->create();
-
         $response = $this->get(route('users.index'));
+
+        $response->assertRedirect('login');
+    }
+
+   public function testAnAuthenticatedUsersCanListUsers()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+            ->get(route('users.index'));
 
         $response->assertOk();
         $usersResponse = $response->getOriginalContent()['users'];
 
         $response->assertViewIs('users.index');
-        $this->assertNotEmpty($usersResponse->count());
+        $response->assertViewHas('users');
+        $this->assertEquals($user->id, $usersResponse->first()->id);
+
 
     }
 }
