@@ -15,11 +15,13 @@ return [
     ],
     'text'=>[
         'logged'=>'¡Estás conectado!',
+        'status'=>'Estado',
     ],
     'buttons' =>[
         'home' => 'Inicio',
         'create' => 'Crear',
-
-
+        'edit' => 'Editar',
+        'update' => 'Actualizar',
+        'edit_user' => 'Editar usuario',
     ],
 ];

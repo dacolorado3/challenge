@@ -2,12 +2,13 @@
 
 namespace Tests\Feature\challange;
 
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class authenticationusers extends TestCase
+class authenticationusersTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -21,9 +22,9 @@ class authenticationusers extends TestCase
 
     public function test_it_can_login_user(): void
     {
-        $user = $this->enabledUser(['email' => 'danycolorado@hotmail.com']);
+       $user = User::factory()->verified()->create(['email' => 'danielatest@gmail.com']);
 
-        $response = $this->post('/login', ['email' => $user->email(), 'password' => 'password']);
+        $response = $this->post('/login', ['email' => $user->email, 'password' => 'password']);
 
         $response->assertSessionHasNoErrors();
         $this->assertAuthenticated();
@@ -32,22 +33,13 @@ class authenticationusers extends TestCase
 
     public function test_it_dont_authenticates_with_wrong_password(): void
     {
-        $user = $this->user(['email' => 'danycolorado@hotmail.com']);
+        $user = User::factory()->verified()->create(['email' => 'danielatest@gmail.com']);
 
-        $response = $this->post('/login', ['email' => $user->email(), 'password' => 'password1']);
+        $response = $this->post('/login', ['email' => $user->email, 'password' => 'password1']);
 
         $response->assertSessionHasErrors('email');
         $this->assertNull(Auth::user());
     }
 
-    public function test_a_disabled_user_cant_login(): void
-    {
-        $this->expectException(UserDisabledException::class);
-        $this->withoutExceptionHandling();
 
-        $user = $this->disabledUser(['email' => 'danycolorado302@hotmail.com']);
-        $this->post('/login', ['email' => $user->email(), 'password' => 'password']);
-
-        $this->assertNull(Auth::user());
-    }
 }

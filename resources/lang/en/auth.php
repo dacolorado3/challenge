@@ -26,6 +26,7 @@ return [
         'login'=> 'Login',
         'email'=> 'E-mail address',
         'link_verify_email'=>'click here to request another',
+        'logout' => 'Logout',
     ],
 
 ];

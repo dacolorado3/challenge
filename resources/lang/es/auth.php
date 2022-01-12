@@ -26,7 +26,8 @@ return [
         'register'=> 'Registro',
         'login'=> 'Iniciar sesión',
         'email'=> 'Dirección de correo electrónico',
-        'link_verify_email'=>'haga clic aquí para solicitar otro'
+        'link_verify_email'=>'haga clic aquí para solicitar otro',
+        'logout' => 'Cerrar sesión',
     ],
 
 ];

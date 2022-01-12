@@ -13,6 +13,8 @@
                                 <th scope="col">{{ trans('users.fields.email') }}</th>
                                 <th scope="col">{{ trans('users.fields.created_at') }}</th>
                                 <th scope="col">{{ trans('users.fields.updated_at') }}</th>
+                                <th scope="col"></th>
+                                <th scope="col">{{trans('users.text.status')}}</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -22,12 +24,18 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>{{$user->updated_at}}</td>
+                                    <td>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary"> {{trans('users.buttons.edit')}}</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
-                    {{ $users->links() }}
+
+                    <div class="card-footer">
+                        {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>

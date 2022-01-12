@@ -18,12 +18,15 @@ return[
     'text'=>
         [
         'logged'=>'You are logged in!',
+        'status'=>'Status',
     ],
     'buttons' =>
         [
     'home' =>'Home',
     'create' => 'create',
-
+    'edit' => 'Edit',
+    'update' => 'Update',
+    'edit_user' => 'Edit user',
 ],
 
 ];

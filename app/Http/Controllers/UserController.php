@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\FormUserRequest;
+use App\Http\Requests\Users\StoreUserRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
-
     public function index(): view
-
     {
-        $users = User::paginate(5);
-
+        $users = User::simplePaginate(10);
         return view('users.index', ['users' => $users]);
     }
 
@@ -33,16 +34,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
-        User::create([
+        $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
 
         ]);
-
-        return redirect()->route('users.index');
+        $user->save();
+        return response()->redirectToRoute('users.index');
     }
 
     /**
@@ -59,12 +60,11 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+
      */
-    public function edit($id)
+    public function edit(User $user): view
     {
-        //
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -74,9 +74,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormUserRequest $request, User $user): RedirectResponse
     {
-        //
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $user->update($data);
+
+
+        return response()->redirectToRoute('users.index');
     }
 
     /**
